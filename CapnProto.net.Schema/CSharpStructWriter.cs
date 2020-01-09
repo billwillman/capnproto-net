@@ -146,7 +146,8 @@ namespace CapnProto
         {
             if (!node.IsValid() || node.Union != Schema.Node.Unions.@const) return this;
             var @const = node.@const;
-            return WriteLine().Write("public const ").Write(@const.type).Write(" ").Write(LocalName(node)).Write(" = ").Write(@const.type, @const.value).Write(";");
+            string localName = LocalName(node);
+            return WriteLine().Write("public static class C_" + localName + "{").WriteLine().Write("  public const ").Write(@const.type).Write(" ").Write(localName).Write(" = ").Write(@const.type, @const.value).Write(";").WriteLine().Write("}");
         }
         public override CodeWriter BeginClass(Schema.Node node)
         {
