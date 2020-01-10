@@ -11,5 +11,13 @@ namespace CapnProto
         {
             return pointer.Pointer.IsValid;
         }
+
+        public static int ByteLength<T>(this T pointer) where T : struct, IPointer {
+            return pointer.Pointer.ByteLength;
+        }
+
+        public static void CopyTo<T>(this T pointer, byte[] buffer) where T : struct, IPointer {
+            pointer.Pointer.CopyTo(buffer);
+        }
     }
 }

@@ -1309,6 +1309,24 @@ namespace CapnProto
             }
         }
 
+        public void CopyTo(byte[] buffer) {
+            CopyTo(buffer, 0, 0, -1);
+        }
+
+        // 长度
+        public int ByteLength {
+            get {
+                var ptr = this;
+                if (ptr.IsFar) {
+                    ptr = ptr.Dereference();
+                }
+                ptr.AssertNilOrSingleByte();
+
+                int len = ptr.SingleByteLength;
+                return len;
+            }
+        }
+
         internal void CopyTo(byte[] buffer, int destinationIndex, int sourceIndex, int count)
         {
             var ptr = this;
