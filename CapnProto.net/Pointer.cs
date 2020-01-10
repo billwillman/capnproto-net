@@ -1320,7 +1320,7 @@ namespace CapnProto
                 if (ptr.IsFar) {
                     ptr = ptr.Dereference();
                 }
-                ptr.AssertNilOrSingleByte();
+               // ptr.AssertNilOrSingleByte();
 
                 int len = ptr.SingleByteLength;
                 return len;
